@@ -78,7 +78,7 @@ const clientMenuItems = [
   },
   {
     title: "Account Settings",
-    url: "/client/settings",
+    url: "/client/account",
     icon: Settings,
   },
 ];

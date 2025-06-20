@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -24,6 +23,9 @@ import SendQuickSMS from "./pages/client/SendQuickSMS";
 import SendBulkSMS from "./pages/client/SendBulkSMS";
 import SendFileSMS from "./pages/client/SendFileSMS";
 import CampaignCreation from "./pages/client/CampaignCreation";
+import DeliveryReports from "./pages/client/DeliveryReports";
+import QueuedMessages from "./pages/client/QueuedMessages";
+import AccountSettings from "./pages/client/AccountSettings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -66,6 +68,9 @@ const App: React.FC = () => {
             <Route path="/client/bulk-sms" element={<SendBulkSMS />} />
             <Route path="/client/file-sms" element={<SendFileSMS />} />
             <Route path="/client/campaigns" element={<CampaignCreation />} />
+            <Route path="/client/reports" element={<DeliveryReports />} />
+            <Route path="/client/queue" element={<QueuedMessages />} />
+            <Route path="/client/account" element={<AccountSettings />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
