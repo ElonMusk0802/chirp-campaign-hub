@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -9,6 +10,7 @@ import Login from "./pages/Login";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ClientManagement from "./pages/admin/ClientManagement";
 import CountryManagement from "./pages/admin/CountryManagement";
+import TrafficRates from "./pages/admin/TrafficRates";
 import Packages from "./pages/admin/Packages";
 import SMPPVendors from "./pages/admin/SMPPVendors";
 import HTTPVendors from "./pages/admin/HTTPVendors";

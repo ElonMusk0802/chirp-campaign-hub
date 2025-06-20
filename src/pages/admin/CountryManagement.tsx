@@ -7,22 +7,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Search, Edit, Trash2, Upload, Globe, TrendingUp } from "lucide-react";
+import { Plus, Search, Edit, Trash2, Upload, Globe } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function CountryManagement() {
   const [searchTerm, setSearchTerm] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
-  const [activeTab, setActiveTab] = useState('countries');
+  const [editingCountry, setEditingCountry] = useState<any>(null);
+  const { toast } = useToast();
   
-  const countries = [
+  const [countries, setCountries] = useState([
     {
       id: 1,
       name: "United States",
       code: "US",
       mobileCode: "+1",
-      rate: "$0.045",
-      traffic: "High",
       status: "active"
     },
     {
@@ -30,8 +29,6 @@ export default function CountryManagement() {
       name: "United Kingdom", 
       code: "GB",
       mobileCode: "+44",
-      rate: "$0.038",
-      traffic: "Medium",
       status: "active"
     },
     {
@@ -39,8 +36,6 @@ export default function CountryManagement() {
       name: "Germany",
       code: "DE", 
       mobileCode: "+49",
-      rate: "$0.042",
-      traffic: "High",
       status: "active"
     },
     {
@@ -48,44 +43,82 @@ export default function CountryManagement() {
       name: "India",
       code: "IN",
       mobileCode: "+91", 
-      rate: "$0.022",
-      traffic: "Very High",
-      status: "restricted"
-    }
-  ];
-
-  const trafficRules = [
-    {
-      id: 1,
-      country: "United States",
-      prefix: "+1",
-      rate: "$0.045",
-      dailyLimit: "50,000",
-      currentUsage: "32,450",
-      priority: 1,
-      vendor: "GlobalSMS SMPP"
+      status: "active"
     },
     {
-      id: 2,
-      country: "United Kingdom",
-      prefix: "+44", 
-      rate: "$0.038",
-      dailyLimit: "25,000",
-      currentUsage: "18,200",
-      priority: 2,
-      vendor: "FastRoute HTTP"
+      id: 5,
+      name: "Canada",
+      code: "CA",
+      mobileCode: "+1", 
+      status: "active"
     }
-  ];
+  ]);
 
-  const getTrafficColor = (traffic: string) => {
-    const colors = {
-      "Very High": "bg-red-100 text-red-800",
-      "High": "bg-orange-100 text-orange-800", 
-      "Medium": "bg-yellow-100 text-yellow-800",
-      "Low": "bg-green-100 text-green-800"
+  const handleAddCountry = (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const newCountry = {
+      id: Date.now(),
+      name: formData.get('countryName') as string,
+      code: formData.get('countryCode') as string,
+      mobileCode: formData.get('mobileCode') as string,
+      status: "active"
     };
-    return colors[traffic as keyof typeof colors] || colors["Medium"];
+    
+    setCountries([...countries, newCountry]);
+    setShowAddForm(false);
+    toast({
+      title: "Success",
+      description: "Country added successfully",
+    });
   };
+
+  const handleEditCountry = (country: any) => {
+    setEditingCountry(country);
+    setShowAddForm(true);
+  };
+
+  const handleUpdateCountry = (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const updatedCountry = {
+      ...editingCountry,
+      name: formData.get('countryName') as string,
+      code: formData.get('countryCode') as string,
+      mobileCode: formData.get('mobileCode') as string,
+    };
+    
+    setCountries(countries.map(country => 
+      country.id === editingCountry.id ? updatedCountry : country
+    ));
+    setShowAddForm(false);
+    setEditingCountry(null);
+    toast({
+      title: "Success",
+      description: "Country updated successfully",
+    });
+  };
+
+  const handleDeleteCountry = (id: number) => {
+    setCountries(countries.filter(country => country.id !== id));
+    toast({
+      title: "Success",
+      description: "Country deleted successfully",
+    });
+  };
+
+  const handleCSVImport = () => {
+    toast({
+      title: "CSV Import",
+      description: "CSV import functionality would be implemented here",
+    });
+  };
+
+  const filteredCountries = countries.filter(country =>
+    country.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    country.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    country.mobileCode.includes(searchTerm)
+  );
 
   return (
     <AdminLayout>
@@ -93,12 +126,12 @@ export default function CountryManagement() {
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent">
-              Country & Traffic Management
+              Country Management
             </h1>
-            <p className="text-gray-600 mt-2">Manage countries, rates, and traffic rules</p>
+            <p className="text-gray-600 mt-2">Add, edit, and delete countries</p>
           </div>
           <div className="flex space-x-4">
-            <Button variant="outline" className="border-emerald-200 text-emerald-600 hover:bg-emerald-50">
+            <Button variant="outline" onClick={handleCSVImport} className="border-emerald-200 text-emerald-600 hover:bg-emerald-50">
               <Upload className="h-4 w-4 mr-2" />
               Import CSV
             </Button>
@@ -113,12 +146,11 @@ export default function CountryManagement() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { title: "Total Countries", value: "195", change: "+3", icon: Globe, gradient: "from-emerald-500 to-cyan-500" },
-            { title: "Active Routes", value: "147", change: "+5", icon: Globe, gradient: "from-blue-500 to-indigo-500" },
-            { title: "Avg. Rate", value: "$0.035", change: "-$0.003", icon: TrendingUp, gradient: "from-purple-500 to-pink-500" },
-            { title: "High Traffic", value: "24", change: "+2", icon: TrendingUp, gradient: "from-orange-500 to-red-500" }
+            { title: "Total Countries", value: countries.length.toString(), change: "+3", icon: Globe, gradient: "from-emerald-500 to-cyan-500" },
+            { title: "Active Countries", value: countries.filter(c => c.status === 'active').length.toString(), change: "+2", icon: Globe, gradient: "from-blue-500 to-indigo-500" },
+            { title: "Unique Prefixes", value: new Set(countries.map(c => c.mobileCode)).size.toString(), change: "+1", icon: Globe, gradient: "from-purple-500 to-pink-500" }
           ].map((stat, index) => (
             <Card key={index} className="relative overflow-hidden border-0 shadow-xl">
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-5`}></div>
@@ -138,158 +170,101 @@ export default function CountryManagement() {
           ))}
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="countries">Country Management</TabsTrigger>
-            <TabsTrigger value="traffic">Traffic & Rates</TabsTrigger>
-          </TabsList>
+        {/* Search */}
+        <Card className="shadow-xl border-0 bg-gradient-to-r from-white to-emerald-50">
+          <CardContent className="p-6">
+            <div className="relative">
+              <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Input
+                placeholder="Search countries by name, code, or mobile prefix..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 border-gray-200"
+              />
+            </div>
+          </CardContent>
+        </Card>
 
-          <TabsContent value="countries" className="space-y-6">
-            {/* Search */}
-            <Card className="shadow-xl border-0 bg-gradient-to-r from-white to-emerald-50">
-              <CardContent className="p-6">
-                <div className="relative">
-                  <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <Input
-                    placeholder="Search countries by name, code, or mobile prefix..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 border-gray-200"
-                  />
-                </div>
-              </CardContent>
-            </Card>
+        {/* Countries Table */}
+        <Card className="shadow-xl border-0">
+          <CardHeader className="bg-gradient-to-r from-emerald-50 to-cyan-50 border-b border-emerald-100">
+            <CardTitle className="text-gray-900">Countries</CardTitle>
+            <CardDescription>Manage country information and mobile codes</CardDescription>
+          </CardHeader>
+          <CardContent className="p-0">
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-gray-50">
+                  <TableHead className="font-semibold">Country Name</TableHead>
+                  <TableHead className="font-semibold">Country Code</TableHead>
+                  <TableHead className="font-semibold">Mobile Code</TableHead>
+                  <TableHead className="font-semibold">Status</TableHead>
+                  <TableHead className="font-semibold">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredCountries.map((country) => (
+                  <TableRow key={country.id} className="hover:bg-emerald-50/50 transition-colors">
+                    <TableCell className="font-medium">{country.name}</TableCell>
+                    <TableCell className="font-mono">{country.code}</TableCell>
+                    <TableCell className="font-mono">{country.mobileCode}</TableCell>
+                    <TableCell>
+                      <Badge className={country.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
+                        {country.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex space-x-2">
+                        <Button size="sm" variant="outline" onClick={() => handleEditCountry(country)} className="border-blue-200 text-blue-600 hover:bg-blue-50">
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button size="sm" variant="outline" onClick={() => handleDeleteCountry(country.id)} className="border-red-200 text-red-600 hover:bg-red-50">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
 
-            {/* Countries Table */}
-            <Card className="shadow-xl border-0">
-              <CardHeader className="bg-gradient-to-r from-emerald-50 to-cyan-50 border-b border-emerald-100">
-                <CardTitle className="text-gray-900">Countries</CardTitle>
-                <CardDescription>Add, edit, and delete countries</CardDescription>
-              </CardHeader>
-              <CardContent className="p-0">
-                <Table>
-                  <TableHeader>
-                    <TableRow className="bg-gray-50">
-                      <TableHead className="font-semibold">Country Name</TableHead>
-                      <TableHead className="font-semibold">Country Code</TableHead>
-                      <TableHead className="font-semibold">Mobile Code</TableHead>
-                      <TableHead className="font-semibold">Status</TableHead>
-                      <TableHead className="font-semibold">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {countries.map((country) => (
-                      <TableRow key={country.id} className="hover:bg-emerald-50/50 transition-colors">
-                        <TableCell className="font-medium">{country.name}</TableCell>
-                        <TableCell className="font-mono">{country.code}</TableCell>
-                        <TableCell className="font-mono">{country.mobileCode}</TableCell>
-                        <TableCell>
-                          <Badge className={country.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
-                            {country.status}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex space-x-2">
-                            <Button size="sm" variant="outline" className="border-blue-200 text-blue-600 hover:bg-blue-50">
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button size="sm" variant="outline" className="border-red-200 text-red-600 hover:bg-red-50">
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="traffic" className="space-y-6">
-            {/* Traffic & Rates Table */}
-            <Card className="shadow-xl border-0">
-              <CardHeader className="bg-gradient-to-r from-cyan-50 to-blue-50 border-b border-cyan-100">
-                <CardTitle className="text-gray-900">Traffic & Rates Management</CardTitle>
-                <CardDescription>Manage country-wise SMS rates and traffic rules</CardDescription>
-              </CardHeader>
-              <CardContent className="p-0">
-                <Table>
-                  <TableHeader>
-                    <TableRow className="bg-gray-50">
-                      <TableHead className="font-semibold">Country</TableHead>
-                      <TableHead className="font-semibold">Prefix</TableHead>
-                      <TableHead className="font-semibold">Rate</TableHead>
-                      <TableHead className="font-semibold">Daily Limit</TableHead>
-                      <TableHead className="font-semibold">Usage</TableHead>
-                      <TableHead className="font-semibold">Priority</TableHead>
-                      <TableHead className="font-semibold">Vendor</TableHead>
-                      <TableHead className="font-semibold">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {trafficRules.map((rule) => (
-                      <TableRow key={rule.id} className="hover:bg-cyan-50/50 transition-colors">
-                        <TableCell className="font-medium">{rule.country}</TableCell>
-                        <TableCell className="font-mono">{rule.prefix}</TableCell>
-                        <TableCell className="font-semibold text-green-600">{rule.rate}</TableCell>
-                        <TableCell>{rule.dailyLimit}</TableCell>
-                        <TableCell>{rule.currentUsage}</TableCell>
-                        <TableCell>
-                          <Badge variant="outline" className="border-blue-200 text-blue-600">
-                            {rule.priority}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-sm">{rule.vendor}</TableCell>
-                        <TableCell>
-                          <div className="flex space-x-2">
-                            <Button size="sm" variant="outline" className="border-blue-200 text-blue-600 hover:bg-blue-50">
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button size="sm" variant="outline" className="border-red-200 text-red-600 hover:bg-red-50">
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-
-        {/* Add Country Form */}
+        {/* Add/Edit Country Form */}
         {showAddForm && (
           <Card className="shadow-2xl border-0 bg-gradient-to-br from-white to-emerald-50">
             <CardHeader className="bg-gradient-to-r from-emerald-600 to-cyan-600 text-white rounded-t-lg">
-              <CardTitle className="text-white">Add New Country</CardTitle>
-              <CardDescription className="text-emerald-100">Configure a new country</CardDescription>
+              <CardTitle className="text-white">{editingCountry ? 'Edit Country' : 'Add New Country'}</CardTitle>
+              <CardDescription className="text-emerald-100">Configure country information</CardDescription>
             </CardHeader>
             <CardContent className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="countryName">Country Name</Label>
-                  <Input id="countryName" placeholder="Enter country name" />
+              <form onSubmit={editingCountry ? handleUpdateCountry : handleAddCountry}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="countryName">Country Name</Label>
+                    <Input id="countryName" name="countryName" defaultValue={editingCountry?.name || ""} placeholder="Enter country name" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="countryCode">Country Code</Label>
+                    <Input id="countryCode" name="countryCode" defaultValue={editingCountry?.code || ""} placeholder="US, GB, DE..." required />
+                  </div>
+                  <div className="space-y-2 md:col-span-2">
+                    <Label htmlFor="mobileCode">Mobile Code</Label>
+                    <Input id="mobileCode" name="mobileCode" defaultValue={editingCountry?.mobileCode || ""} placeholder="+1, +44, +49..." required />
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="countryCode">Country Code</Label>
-                  <Input id="countryCode" placeholder="US, GB, DE..." />
+                <div className="flex justify-end space-x-4 mt-8">
+                  <Button type="button" variant="outline" onClick={() => {
+                    setShowAddForm(false);
+                    setEditingCountry(null);
+                  }}>
+                    Cancel
+                  </Button>
+                  <Button type="submit" className="bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700">
+                    {editingCountry ? 'Update Country' : 'Add Country'}
+                  </Button>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="mobileCode">Mobile Code</Label>
-                  <Input id="mobileCode" placeholder="+1, +44, +49..." />
-                </div>
-              </div>
-              <div className="flex justify-end space-x-4 mt-8">
-                <Button variant="outline" onClick={() => setShowAddForm(false)}>
-                  Cancel
-                </Button>
-                <Button className="bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700">
-                  Add Country
-                </Button>
-              </div>
+              </form>
             </CardContent>
           </Card>
         )}

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   Sidebar,
   SidebarContent,
@@ -29,7 +30,6 @@ const adminMenuItems = [
     title: "Dashboard",
     url: "/admin",
     icon: LayoutDashboard,
-    active: true,
   },
   {
     title: "Client Management",
@@ -79,6 +79,8 @@ const adminMenuItems = [
 ];
 
 export function AdminSidebar() {
+  const location = useLocation();
+  
   return (
     <Sidebar className="border-r border-gray-200 bg-white shadow-lg">
       <SidebarHeader className="p-6">
@@ -98,23 +100,26 @@ export function AdminSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {adminMenuItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton 
-                    asChild 
-                    className={`w-full mb-1 transition-all duration-200 hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50 hover:border-l-4 hover:border-red-500 ${
-                      item.active ? 'bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-500 text-red-700' : ''
-                    }`}
-                  >
-                    <a href={item.url} className="flex items-center space-x-3 px-3 py-2 rounded-lg">
-                      <item.icon className={`h-5 w-5 ${item.active ? 'text-red-600' : 'text-gray-500'}`} />
-                      <span className={`text-sm font-medium ${item.active ? 'text-red-700' : 'text-gray-700'}`}>
-                        {item.title}
-                      </span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {adminMenuItems.map((item) => {
+                const isActive = location.pathname === item.url;
+                return (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton 
+                      asChild 
+                      className={`w-full mb-1 transition-all duration-200 hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50 hover:border-l-4 hover:border-red-500 ${
+                        isActive ? 'bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-500 text-red-700' : ''
+                      }`}
+                    >
+                      <a href={item.url} className="flex items-center space-x-3 px-3 py-2 rounded-lg">
+                        <item.icon className={`h-5 w-5 ${isActive ? 'text-red-600' : 'text-gray-500'}`} />
+                        <span className={`text-sm font-medium ${isActive ? 'text-red-700' : 'text-gray-700'}`}>
+                          {item.title}
+                        </span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
