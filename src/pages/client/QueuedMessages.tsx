@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ClientLayout } from '@/components/layouts/ClientLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -92,7 +91,7 @@ export default function QueuedMessages() {
               <Checkbox 
                 id="autoRefresh" 
                 checked={autoRefresh}
-                onCheckedChange={setAutoRefresh}
+                onCheckedChange={(checked) => setAutoRefresh(checked === true)}
               />
               <Label htmlFor="autoRefresh" className="text-sm">Auto-refresh (30s)</Label>
             </div>
@@ -211,7 +210,13 @@ export default function QueuedMessages() {
                   <TableHead className="w-12">
                     <Checkbox 
                       checked={selectedMessages.length === queuedMessages.length}
-                      onCheckedChange={handleSelectAll}
+                      onCheckedChange={(checked) => {
+                        if (checked === true) {
+                          setSelectedMessages(queuedMessages.map(msg => msg.id));
+                        } else {
+                          setSelectedMessages([]);
+                        }
+                      }}
                     />
                   </TableHead>
                   <TableHead className="font-semibold">Scheduled Time</TableHead>
@@ -231,7 +236,13 @@ export default function QueuedMessages() {
                     <TableCell>
                       <Checkbox 
                         checked={selectedMessages.includes(message.id)}
-                        onCheckedChange={() => handleSelectMessage(message.id)}
+                        onCheckedChange={(checked) => {
+                          if (checked === true) {
+                            setSelectedMessages(prev => [...prev, message.id]);
+                          } else {
+                            setSelectedMessages(prev => prev.filter(id => id !== message.id));
+                          }
+                        }}
                       />
                     </TableCell>
                     <TableCell className="font-mono text-sm">{message.scheduledTime}</TableCell>
