@@ -20,7 +20,7 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -38,7 +38,6 @@ const App = () => (
           <Route path="/client/bulk-sms" element={<SendBulkSMS />} />
           <Route path="/client/file-sms" element={<SendFileSMS />} />
           <Route path="/client/campaigns" element={<CampaignCreation />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
