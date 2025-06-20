@@ -1,5 +1,5 @@
 
-import React from 'react';
+import * as React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,31 +18,40 @@ import SendFileSMS from "./pages/client/SendFileSMS";
 import CampaignCreation from "./pages/client/CampaignCreation";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
-const App: React.FC = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/client" element={<ClientDashboard />} />
-          <Route path="/client/groups" element={<GroupManagement />} />
-          <Route path="/client/sender-ids" element={<SenderIds />} />
-          <Route path="/client/templates" element={<ContentTemplates />} />
-          <Route path="/client/quick-sms" element={<SendQuickSMS />} />
-          <Route path="/client/bulk-sms" element={<SendBulkSMS />} />
-          <Route path="/client/file-sms" element={<SendFileSMS />} />
-          <Route path="/client/campaigns" element={<CampaignCreation />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App: React.FC = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/client" element={<ClientDashboard />} />
+            <Route path="/client/groups" element={<GroupManagement />} />
+            <Route path="/client/sender-ids" element={<SenderIds />} />
+            <Route path="/client/templates" element={<ContentTemplates />} />
+            <Route path="/client/quick-sms" element={<SendQuickSMS />} />
+            <Route path="/client/bulk-sms" element={<SendBulkSMS />} />
+            <Route path="/client/file-sms" element={<SendFileSMS />} />
+            <Route path="/client/campaigns" element={<CampaignCreation />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
