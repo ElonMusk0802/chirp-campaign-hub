@@ -8,6 +8,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import ClientManagement from "./pages/admin/ClientManagement";
+import CountryManagement from "./pages/admin/CountryManagement";
+import Packages from "./pages/admin/Packages";
+import SMPPVendors from "./pages/admin/SMPPVendors";
+import HTTPVendors from "./pages/admin/HTTPVendors";
+import FundsManagement from "./pages/admin/FundsManagement";
+import SMSFiltering from "./pages/admin/SMSFiltering";
+import SystemSettings from "./pages/admin/SystemSettings";
 import ClientDashboard from "./pages/client/ClientDashboard";
 import GroupManagement from "./pages/client/GroupManagement";
 import SenderIds from "./pages/client/SenderIds";
@@ -37,7 +45,19 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
+            
+            {/* Admin Routes */}
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/clients" element={<ClientManagement />} />
+            <Route path="/admin/countries" element={<CountryManagement />} />
+            <Route path="/admin/packages" element={<Packages />} />
+            <Route path="/admin/smpp-vendors" element={<SMPPVendors />} />
+            <Route path="/admin/http-vendors" element={<HTTPVendors />} />
+            <Route path="/admin/funds" element={<FundsManagement />} />
+            <Route path="/admin/filters" element={<SMSFiltering />} />
+            <Route path="/admin/settings" element={<SystemSettings />} />
+            
+            {/* Client Routes */}
             <Route path="/client" element={<ClientDashboard />} />
             <Route path="/client/groups" element={<GroupManagement />} />
             <Route path="/client/sender-ids" element={<SenderIds />} />
@@ -46,6 +66,7 @@ const App: React.FC = () => {
             <Route path="/client/bulk-sms" element={<SendBulkSMS />} />
             <Route path="/client/file-sms" element={<SendFileSMS />} />
             <Route path="/client/campaigns" element={<CampaignCreation />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
