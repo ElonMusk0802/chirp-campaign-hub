@@ -22,7 +22,10 @@ import {
   Shield,
   Router,
   MessageSquare,
-  Filter
+  Filter,
+  IdCard,
+  Calendar,
+  FileText
 } from "lucide-react";
 
 const adminMenuItems = [
@@ -70,6 +73,21 @@ const adminMenuItems = [
     title: "SMS Filtering",
     url: "/admin/filters",
     icon: Filter,
+  },
+  {
+    title: "Sender ID Management",
+    url: "/admin/sender-ids",
+    icon: IdCard,
+  },
+  {
+    title: "Campaign Monitoring",
+    url: "/admin/campaigns",
+    icon: Calendar,
+  },
+  {
+    title: "Template Review",
+    url: "/admin/templates",
+    icon: FileText,
   },
   {
     title: "System Settings",

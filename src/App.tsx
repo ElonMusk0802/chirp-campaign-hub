@@ -17,6 +17,9 @@ import HTTPVendors from "./pages/admin/HTTPVendors";
 import FundsManagement from "./pages/admin/FundsManagement";
 import SMSFiltering from "./pages/admin/SMSFiltering";
 import SystemSettings from "./pages/admin/SystemSettings";
+import SenderIdManagement from "./pages/admin/SenderIdManagement";
+import CampaignMonitoring from "./pages/admin/CampaignMonitoring";
+import TemplateReview from "./pages/admin/TemplateReview";
 import ClientDashboard from "./pages/client/ClientDashboard";
 import GroupManagement from "./pages/client/GroupManagement";
 import SenderIds from "./pages/client/SenderIds";
@@ -60,6 +63,9 @@ const App: React.FC = () => {
             <Route path="/admin/funds" element={<FundsManagement />} />
             <Route path="/admin/filters" element={<SMSFiltering />} />
             <Route path="/admin/settings" element={<SystemSettings />} />
+            <Route path="/admin/sender-ids" element={<SenderIdManagement />} />
+            <Route path="/admin/campaigns" element={<CampaignMonitoring />} />
+            <Route path="/admin/templates" element={<TemplateReview />} />
             
             {/* Client Routes */}
             <Route path="/client" element={<ClientDashboard />} />
