@@ -72,16 +72,16 @@ export default function SMSFiltering() {
   return (
     <AdminLayout>
       <div className="space-y-8">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mb-2">
           <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-red-600 via-pink-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
               SMS Filtering
             </h1>
-            <p className="text-gray-600 mt-2">Create and manage SMS filtering rules</p>
+            <p className="text-gray-600 mt-2 text-lg">Create and manage SMS filtering rules</p>
           </div>
           <Button 
             onClick={() => setShowAddForm(true)}
-            className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700"
+            className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all duration-200"
           >
             <Plus className="h-4 w-4 mr-2" />
             Add Filter Rule
@@ -91,22 +91,22 @@ export default function SMSFiltering() {
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {[
-            { title: "Total Rules", value: "24", change: "+3", icon: Filter, gradient: "from-red-500 to-pink-500" },
-            { title: "Active Filters", value: "18", change: "+2", icon: Shield, gradient: "from-pink-500 to-purple-500" },
-            { title: "Blocked Today", value: "1,247", change: "+89", icon: Filter, gradient: "from-purple-500 to-blue-500" },
-            { title: "Success Rate", value: "98.7%", change: "+0.5%", icon: Shield, gradient: "from-blue-500 to-red-500" }
+            { title: "Total Rules", value: "24", change: "+3", icon: Filter, gradient: "from-cyan-500 to-blue-500" },
+            { title: "Active Filters", value: "18", change: "+2", icon: Shield, gradient: "from-blue-500 to-purple-500" },
+            { title: "Blocked Today", value: "1,247", change: "+89", icon: Filter, gradient: "from-purple-500 to-pink-500" },
+            { title: "Success Rate", value: "98.7%", change: "+0.5%", icon: Shield, gradient: "from-pink-500 to-red-500" }
           ].map((stat, index) => (
-            <Card key={index} className="relative overflow-hidden border-0 shadow-xl">
-              <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-5`}></div>
-              <CardContent className="p-6">
+            <Card key={index} className="relative overflow-hidden border-0 shadow-2xl bg-gradient-to-br from-white to-gray-50">
+              <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-10`}></div>
+              <CardContent className="p-6 relative">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">{stat.title}</p>
-                    <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                    <p className="text-xs text-green-600 font-medium">{stat.change}</p>
+                    <p className="text-sm text-gray-600 mb-2 font-medium">{stat.title}</p>
+                    <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
+                    <p className="text-xs text-emerald-600 font-semibold mt-1">{stat.change}</p>
                   </div>
-                  <div className={`p-3 rounded-xl bg-gradient-to-r ${stat.gradient}`}>
-                    <stat.icon className="h-6 w-6 text-white" />
+                  <div className={`p-4 rounded-2xl bg-gradient-to-r ${stat.gradient} shadow-lg`}>
+                    <stat.icon className="h-7 w-7 text-white" />
                   </div>
                 </div>
               </CardContent>
@@ -115,32 +115,32 @@ export default function SMSFiltering() {
         </div>
 
         {/* Filter Tabs */}
-        <Card className="shadow-xl border-0 bg-gradient-to-r from-white to-red-50">
+        <Card className="shadow-2xl border-0 bg-gradient-to-r from-white via-cyan-50 to-blue-50">
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex space-x-2">
+              <div className="flex space-x-3">
                 <Button 
                   variant={filterType === 'to-based' ? 'default' : 'outline'}
                   onClick={() => setFilterType('to-based')}
-                  className={filterType === 'to-based' ? 'bg-gradient-to-r from-orange-500 to-red-500' : 'border-orange-200 text-orange-600 hover:bg-orange-50'}
+                  className={filterType === 'to-based' ? 'bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg' : 'border-orange-200 text-orange-600 hover:bg-orange-50 hover:shadow-md transition-all duration-200'}
                 >
                   TO-Based Filters
                 </Button>
                 <Button 
                   variant={filterType === 'content-based' ? 'default' : 'outline'}
                   onClick={() => setFilterType('content-based')}
-                  className={filterType === 'content-based' ? 'bg-gradient-to-r from-cyan-500 to-blue-500' : 'border-cyan-200 text-cyan-600 hover:bg-cyan-50'}
+                  className={filterType === 'content-based' ? 'bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg' : 'border-cyan-200 text-cyan-600 hover:bg-cyan-50 hover:shadow-md transition-all duration-200'}
                 >
                   Content-Based Filters
                 </Button>
               </div>
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-3 h-5 w-5 text-cyan-400" />
                 <Input
                   placeholder="Search filter rules..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 border-gray-200"
+                  className="pl-12 border-cyan-200 focus:border-cyan-400 focus:ring-cyan-400/20 bg-white/80 backdrop-blur-sm"
                 />
               </div>
             </div>
@@ -148,10 +148,10 @@ export default function SMSFiltering() {
         </Card>
 
         {/* Filters Table */}
-        <Card className="shadow-xl border-0">
-          <CardHeader className="bg-gradient-to-r from-red-50 to-pink-50 border-b border-red-100">
-            <CardTitle className="text-gray-900">Filter Rules</CardTitle>
-            <CardDescription>Manage SMS filtering and content rules</CardDescription>
+        <Card className="shadow-2xl border-0">
+          <CardHeader className="bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 text-white rounded-t-lg">
+            <CardTitle className="text-white text-xl font-bold">Filter Rules</CardTitle>
+            <CardDescription className="text-cyan-100">Manage SMS filtering and content rules</CardDescription>
           </CardHeader>
           <CardContent className="p-0">
             <Table>
@@ -208,10 +208,10 @@ export default function SMSFiltering() {
 
         {/* Add Filter Form */}
         {showAddForm && (
-          <Card className="shadow-2xl border-0 bg-gradient-to-br from-white to-red-50">
-            <CardHeader className="bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-t-lg">
-              <CardTitle className="text-white">Create Filter Rule</CardTitle>
-              <CardDescription className="text-red-100">Define a new SMS filtering rule</CardDescription>
+          <Card className="shadow-2xl border-0 bg-gradient-to-br from-white to-cyan-50">
+            <CardHeader className="bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-t-lg">
+              <CardTitle className="text-white text-xl font-bold">Create Filter Rule</CardTitle>
+              <CardDescription className="text-cyan-100">Define a new SMS filtering rule</CardDescription>
             </CardHeader>
             <CardContent className="p-8">
               <div className="space-y-6">
@@ -258,7 +258,7 @@ export default function SMSFiltering() {
                 <Button variant="outline" onClick={() => setShowAddForm(false)}>
                   Cancel
                 </Button>
-                <Button className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700">
+                <Button className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all duration-200">
                   Create Rule
                 </Button>
               </div>

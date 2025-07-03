@@ -136,94 +136,109 @@ const CampaignMonitoring = () => {
     <AdminLayout>
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mb-2">
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               Campaign Monitoring
             </h1>
-            <p className="text-gray-600 mt-1">Monitor and manage all client campaigns in real-time</p>
+            <p className="text-gray-600 mt-2 text-lg">Monitor and manage all client campaigns in real-time</p>
           </div>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Campaigns</CardTitle>
-              <Calendar className="h-4 w-4 text-gray-600" />
+          <Card className="relative overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-indigo-50">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-blue-500/5"></div>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative">
+              <CardTitle className="text-sm font-medium text-gray-700">Total Campaigns</CardTitle>
+              <div className="p-2 rounded-lg bg-gradient-to-r from-indigo-500 to-blue-500">
+                <Calendar className="h-5 w-5 text-white" />
+              </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">4</div>
-              <p className="text-xs text-gray-600">All campaigns</p>
+            <CardContent className="relative">
+              <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">4</div>
+              <p className="text-sm text-gray-600 mt-1">All campaigns</p>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Running</CardTitle>
-              <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">1</Badge>
+          <Card className="relative overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-blue-50">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5"></div>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative">
+              <CardTitle className="text-sm font-medium text-gray-700">Running</CardTitle>
+              <div className="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500">
+                <Badge variant="outline" className="border-0 bg-white/90 text-blue-700 font-semibold">1</Badge>
+              </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-blue-600">1</div>
-              <p className="text-xs text-gray-600">Active now</p>
+            <CardContent className="relative">
+              <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">1</div>
+              <p className="text-sm text-gray-600 mt-1">Active now</p>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Scheduled</CardTitle>
-              <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">1</Badge>
+          <Card className="relative overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-purple-50">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-violet-500/5"></div>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative">
+              <CardTitle className="text-sm font-medium text-gray-700">Scheduled</CardTitle>
+              <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-violet-500">
+                <Badge variant="outline" className="border-0 bg-white/90 text-purple-700 font-semibold">1</Badge>
+              </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-purple-600">1</div>
-              <p className="text-xs text-gray-600">Upcoming</p>
+            <CardContent className="relative">
+              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">1</div>
+              <p className="text-sm text-gray-600 mt-1">Upcoming</p>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Completed</CardTitle>
-              <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">1</Badge>
+          <Card className="relative overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-emerald-50">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-green-500/5"></div>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative">
+              <CardTitle className="text-sm font-medium text-gray-700">Completed</CardTitle>
+              <div className="p-2 rounded-lg bg-gradient-to-r from-emerald-500 to-green-500">
+                <Badge variant="outline" className="border-0 bg-white/90 text-emerald-700 font-semibold">1</Badge>
+              </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-green-600">1</div>
-              <p className="text-xs text-gray-600">Finished</p>
+            <CardContent className="relative">
+              <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">1</div>
+              <p className="text-sm text-gray-600 mt-1">Finished</p>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Paused</CardTitle>
-              <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">1</Badge>
+          <Card className="relative overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-amber-50">
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-yellow-500/5"></div>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative">
+              <CardTitle className="text-sm font-medium text-gray-700">Paused</CardTitle>
+              <div className="p-2 rounded-lg bg-gradient-to-r from-amber-500 to-yellow-500">
+                <Badge variant="outline" className="border-0 bg-white/90 text-amber-700 font-semibold">1</Badge>
+              </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-yellow-600">1</div>
-              <p className="text-xs text-gray-600">On hold</p>
+            <CardContent className="relative">
+              <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">1</div>
+              <p className="text-sm text-gray-600 mt-1">On hold</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Filters */}
-        <Card>
+        <Card className="shadow-xl border-0 bg-gradient-to-r from-white via-blue-50 to-purple-50">
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-400 h-5 w-5" />
                   <Input
                     placeholder="Search campaigns or clients..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
+                    className="pl-12 border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 bg-white/80 backdrop-blur-sm"
                   />
                 </div>
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-full md:w-48">
-                  <Filter className="h-4 w-4 mr-2" />
+                <SelectTrigger className="w-full md:w-52 border-blue-200 focus:border-blue-400 focus:ring-blue-400/20 bg-white/80 backdrop-blur-sm">
+                  <Filter className="h-4 w-4 mr-2 text-blue-500" />
                   <SelectValue placeholder="Filter by status" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white/95 backdrop-blur-md border-blue-200">
                   <SelectItem value="all">All Status</SelectItem>
                   <SelectItem value="running">Running</SelectItem>
                   <SelectItem value="scheduled">Scheduled</SelectItem>
@@ -233,10 +248,10 @@ const CampaignMonitoring = () => {
                 </SelectContent>
               </Select>
               <Select value={clientFilter} onValueChange={setClientFilter}>
-                <SelectTrigger className="w-full md:w-48">
+                <SelectTrigger className="w-full md:w-52 border-purple-200 focus:border-purple-400 focus:ring-purple-400/20 bg-white/80 backdrop-blur-sm">
                   <SelectValue placeholder="Filter by client" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white/95 backdrop-blur-md border-purple-200">
                   <SelectItem value="all">All Clients</SelectItem>
                   {uniqueClients.map((client) => (
                     <SelectItem key={client.id} value={client.id}>{client.name}</SelectItem>
@@ -248,11 +263,11 @@ const CampaignMonitoring = () => {
         </Card>
 
         {/* Campaigns Table */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Campaign Overview</CardTitle>
+        <Card className="shadow-2xl border-0 bg-gradient-to-br from-white to-blue-50/30">
+          <CardHeader className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-t-lg">
+            <CardTitle className="text-white text-xl font-bold">Campaign Overview</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-0">
             <Table>
               <TableHeader>
                 <TableRow>
