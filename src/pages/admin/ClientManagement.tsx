@@ -58,20 +58,29 @@ export default function ClientManagement() {
   return (
     <AdminLayout>
       <div className="space-y-8">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
-              Client Management
-            </h1>
-            <p className="text-gray-600 mt-2">Manage clients, accounts, and permissions</p>
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-orange-950 to-red-950 p-8 text-white shadow-2xl">
+          {/* Animated Background */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-orange-400 to-red-600 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-br from-pink-400 to-orange-600 rounded-full blur-2xl animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full blur-xl animate-pulse delay-500"></div>
           </div>
-          <Button 
-            onClick={() => setShowAddForm(true)}
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            Add Client
-          </Button>
+          
+          <div className="relative z-10 flex justify-between items-center">
+            <div>
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-300 via-red-300 to-pink-300 bg-clip-text text-transparent animate-pulse">
+                Client Management
+              </h1>
+              <p className="text-orange-200/80 text-xl font-medium mt-2">Manage clients, accounts, and permissions</p>
+            </div>
+            <Button 
+              onClick={() => setShowAddForm(true)}
+              className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-orange-500/30 px-8 py-4 text-lg rounded-2xl"
+            >
+              <Plus className="h-6 w-6 mr-3" />
+              Add Client
+            </Button>
+          </div>
         </div>
 
         {/* Stats Cards */}

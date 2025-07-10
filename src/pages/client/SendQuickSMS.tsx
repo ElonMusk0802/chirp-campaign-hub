@@ -54,30 +54,36 @@ export default function SendQuickSMS() {
   return (
     <ClientLayout>
       <div className="space-y-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 p-8 text-white">
-          <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-purple-950 to-indigo-950 p-8 text-white shadow-2xl">
+          {/* Animated Background */}
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-br from-pink-400 to-blue-600 rounded-full blur-2xl animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-emerald-400 to-cyan-600 rounded-full blur-xl animate-pulse delay-500"></div>
+          </div>
+          
           <div className="relative z-10">
-            <div className="flex items-center space-x-4 mb-4">
-              <div className="p-3 bg-white/20 backdrop-blur-sm rounded-2xl">
-                <Zap className="h-8 w-8" />
+            <div className="flex items-center space-x-6 mb-6">
+              <div className="p-4 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-3xl shadow-lg shadow-purple-500/30 transform hover:scale-110 transition-transform duration-300">
+                <Zap className="h-10 w-10 text-white animate-pulse" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold">Send Quick SMS</h1>
-                <p className="text-orange-100 text-lg">Send instant SMS to multiple recipients</p>
+                <h1 className="text-5xl font-bold bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent animate-pulse">Send Quick SMS</h1>
+                <p className="text-cyan-200/80 text-xl font-medium mt-2">Send instant SMS to multiple recipients</p>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-                <div className="text-3xl font-bold">{phoneList.length}</div>
-                <div className="text-orange-100">Recipients</div>
+              <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 backdrop-blur-xl rounded-3xl p-8 border border-cyan-400/20 shadow-xl shadow-cyan-500/20 transform hover:scale-105 transition-all duration-300">
+                <div className="text-4xl font-bold bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">{phoneList.length}</div>
+                <div className="text-cyan-200/80 text-lg font-medium mt-2">Recipients</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-                <div className="text-3xl font-bold">{smsCount}</div>
-                <div className="text-orange-100">SMS Parts</div>
+              <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-xl rounded-3xl p-8 border border-purple-400/20 shadow-xl shadow-purple-500/20 transform hover:scale-105 transition-all duration-300">
+                <div className="text-4xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">{smsCount}</div>
+                <div className="text-purple-200/80 text-lg font-medium mt-2">SMS Parts</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-                <div className="text-3xl font-bold">{characterCount}</div>
-                <div className="text-orange-100">Characters</div>
+              <div className="bg-gradient-to-br from-pink-500/20 to-orange-500/20 backdrop-blur-xl rounded-3xl p-8 border border-pink-400/20 shadow-xl shadow-pink-500/20 transform hover:scale-105 transition-all duration-300">
+                <div className="text-4xl font-bold bg-gradient-to-r from-pink-300 to-orange-300 bg-clip-text text-transparent">{characterCount}</div>
+                <div className="text-pink-200/80 text-lg font-medium mt-2">Characters</div>
               </div>
             </div>
           </div>
