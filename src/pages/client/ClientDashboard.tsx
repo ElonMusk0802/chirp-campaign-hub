@@ -9,12 +9,13 @@ import { Sparkles, TrendingUp, MessageSquare, Users, Star } from 'lucide-react';
 export default function ClientDashboard() {
   return (
     <ClientLayout>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 relative overflow-hidden">
         {/* Animated Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 animate-pulse"></div>
         <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-10 blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full opacity-10 blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-10 right-10 w-96 h-96 bg-gradient-to-r from-cyan-400/30 to-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-r from-purple-400/30 to-pink-500/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-r from-emerald-400/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
 
         {/* Floating particles */}
@@ -38,12 +39,12 @@ export default function ClientDashboard() {
         <div className="relative z-10 space-y-8 p-6">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 backdrop-blur-sm mb-6">
-              <Sparkles className="h-5 w-5 text-cyan-400 mr-2" />
-              <span className="text-cyan-300 font-semibold">Client Command Center</span>
+            <div className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500/30 to-blue-500/30 border border-cyan-400/50 backdrop-blur-xl mb-8 shadow-2xl shadow-cyan-500/20">
+              <Sparkles className="h-6 w-6 text-cyan-300 mr-3 animate-pulse" />
+              <span className="text-cyan-200 font-bold text-lg">Client Command Center</span>
             </div>
-            <h1 className="text-6xl font-extrabold text-white mb-4">
-              <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-7xl font-black text-white mb-6 tracking-tight">
+              <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-2xl">
                 Dashboard
               </span>
             </h1>
@@ -74,25 +75,37 @@ export default function ClientDashboard() {
 
           {/* Additional Stats Section */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
-            <div className="text-center p-6 bg-gradient-to-br from-black/40 to-cyan-900/40 backdrop-blur-xl border border-cyan-500/20 rounded-2xl hover:border-cyan-400/50 transition-all duration-300">
-              <MessageSquare className="h-12 w-12 text-cyan-400 mx-auto mb-4" />
-              <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">2.5M</div>
-              <div className="text-white/80 font-semibold">Messages Sent</div>
+            <div className="group text-center p-8 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 backdrop-blur-xl border border-cyan-400/40 rounded-3xl hover:border-cyan-300/70 hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500 transform hover:scale-105">
+              <div className="relative">
+                <MessageSquare className="h-16 w-16 text-cyan-300 mx-auto mb-6 group-hover:animate-pulse" />
+                <div className="absolute inset-0 bg-cyan-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+              <div className="text-4xl font-black bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent mb-2">2.5M</div>
+              <div className="text-cyan-100 font-bold text-lg">Messages Sent</div>
             </div>
-            <div className="text-center p-6 bg-gradient-to-br from-black/40 to-purple-900/40 backdrop-blur-xl border border-purple-500/20 rounded-2xl hover:border-purple-400/50 transition-all duration-300">
-              <TrendingUp className="h-12 w-12 text-purple-400 mx-auto mb-4" />
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">98.5%</div>
-              <div className="text-white/80 font-semibold">Delivery Rate</div>
+            <div className="group text-center p-8 bg-gradient-to-br from-purple-500/20 to-pink-600/20 backdrop-blur-xl border border-purple-400/40 rounded-3xl hover:border-purple-300/70 hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-500 transform hover:scale-105">
+              <div className="relative">
+                <TrendingUp className="h-16 w-16 text-purple-300 mx-auto mb-6 group-hover:animate-pulse" />
+                <div className="absolute inset-0 bg-purple-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+              <div className="text-4xl font-black bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent mb-2">98.5%</div>
+              <div className="text-purple-100 font-bold text-lg">Delivery Rate</div>
             </div>
-            <div className="text-center p-6 bg-gradient-to-br from-black/40 to-emerald-900/40 backdrop-blur-xl border border-emerald-500/20 rounded-2xl hover:border-emerald-400/50 transition-all duration-300">
-              <Users className="h-12 w-12 text-emerald-400 mx-auto mb-4" />
-              <div className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">45K</div>
-              <div className="text-white/80 font-semibold">Active Contacts</div>
+            <div className="group text-center p-8 bg-gradient-to-br from-emerald-500/20 to-teal-600/20 backdrop-blur-xl border border-emerald-400/40 rounded-3xl hover:border-emerald-300/70 hover:shadow-2xl hover:shadow-emerald-500/30 transition-all duration-500 transform hover:scale-105">
+              <div className="relative">
+                <Users className="h-16 w-16 text-emerald-300 mx-auto mb-6 group-hover:animate-pulse" />
+                <div className="absolute inset-0 bg-emerald-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+              <div className="text-4xl font-black bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent mb-2">45K</div>
+              <div className="text-emerald-100 font-bold text-lg">Active Contacts</div>
             </div>
-            <div className="text-center p-6 bg-gradient-to-br from-black/40 to-pink-900/40 backdrop-blur-xl border border-pink-500/20 rounded-2xl hover:border-pink-400/50 transition-all duration-300">
-              <Sparkles className="h-12 w-12 text-pink-400 mx-auto mb-4" />
-              <div className="text-3xl font-bold bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">12</div>
-              <div className="text-white/80 font-semibold">Active Campaigns</div>
+            <div className="group text-center p-8 bg-gradient-to-br from-pink-500/20 to-rose-600/20 backdrop-blur-xl border border-pink-400/40 rounded-3xl hover:border-pink-300/70 hover:shadow-2xl hover:shadow-pink-500/30 transition-all duration-500 transform hover:scale-105">
+              <div className="relative">
+                <Sparkles className="h-16 w-16 text-pink-300 mx-auto mb-6 group-hover:animate-pulse" />
+                <div className="absolute inset-0 bg-pink-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+              <div className="text-4xl font-black bg-gradient-to-r from-pink-300 to-rose-300 bg-clip-text text-transparent mb-2">12</div>
+              <div className="text-pink-100 font-bold text-lg">Active Campaigns</div>
             </div>
           </div>
         </div>

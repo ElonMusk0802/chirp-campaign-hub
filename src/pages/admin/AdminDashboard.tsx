@@ -9,13 +9,14 @@ import { Shield, Crown, Settings, BarChart3, Star, Zap, Users, Database } from '
 export default function AdminDashboard() {
   return (
     <AdminLayout>
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-gray-950 via-slate-950 to-zinc-950 relative overflow-hidden">
         {/* Animated Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 via-blue-600/10 to-purple-600/10 animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/15 via-cyan-500/15 to-blue-500/15 animate-pulse"></div>
         <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-emerald-400 to-cyan-500 rounded-full opacity-10 blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-10 blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-gradient-to-r from-violet-400 to-pink-500 rounded-full opacity-10 blur-3xl animate-pulse delay-2000"></div>
+          <div className="absolute top-20 left-20 w-80 h-80 bg-gradient-to-r from-emerald-400/40 to-cyan-500/40 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-blue-400/40 to-purple-500/40 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 w-88 h-88 bg-gradient-to-r from-violet-400/30 to-pink-500/30 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          <div className="absolute top-40 right-40 w-64 h-64 bg-gradient-to-r from-teal-400/25 to-emerald-500/25 rounded-full blur-3xl animate-pulse delay-3000"></div>
         </div>
 
         {/* Floating particles */}
@@ -39,12 +40,12 @@ export default function AdminDashboard() {
         <div className="relative z-10 space-y-8 p-6">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500/20 to-blue-500/20 border border-emerald-500/30 backdrop-blur-sm mb-6">
-              <Crown className="h-5 w-5 text-emerald-400 mr-2" />
-              <span className="text-emerald-300 font-semibold">Administrator Control Hub</span>
+            <div className="inline-flex items-center px-10 py-5 rounded-full bg-gradient-to-r from-emerald-500/40 to-cyan-500/40 border border-emerald-300/60 backdrop-blur-xl mb-10 shadow-2xl shadow-emerald-500/25">
+              <Crown className="h-7 w-7 text-emerald-200 mr-4 animate-pulse" />
+              <span className="text-emerald-100 font-black text-xl">Administrator Control Hub</span>
             </div>
-            <h1 className="text-6xl font-extrabold text-white mb-4">
-              <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+            <h1 className="text-8xl font-black text-white mb-8 tracking-tight">
+              <span className="bg-gradient-to-r from-emerald-300 via-cyan-300 to-blue-300 bg-clip-text text-transparent drop-shadow-2xl">
                 Admin Dashboard
               </span>
             </h1>
@@ -75,70 +76,70 @@ export default function AdminDashboard() {
 
           {/* Admin Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
-            <div className="text-center p-6 bg-gradient-to-br from-black/40 to-emerald-900/40 backdrop-blur-xl border border-emerald-500/20 rounded-2xl hover:border-emerald-400/50 transition-all duration-300 group">
+            <div className="group text-center p-10 bg-gradient-to-br from-emerald-500/25 to-teal-600/25 backdrop-blur-xl border border-emerald-300/50 rounded-3xl hover:border-emerald-200/80 hover:shadow-2xl hover:shadow-emerald-500/40 transition-all duration-700 transform hover:scale-110">
               <div className="relative">
-                <Database className="h-12 w-12 text-emerald-400 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-emerald-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Database className="h-20 w-20 text-emerald-200 mx-auto mb-8 group-hover:animate-pulse" />
+                <div className="absolute inset-0 bg-emerald-300/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">15.2M</div>
-              <div className="text-white/80 font-semibold">Total Messages</div>
+              <div className="text-5xl font-black bg-gradient-to-r from-emerald-200 to-teal-200 bg-clip-text text-transparent mb-3">15.2M</div>
+              <div className="text-emerald-100 font-bold text-xl">Total Messages</div>
             </div>
             
-            <div className="text-center p-6 bg-gradient-to-br from-black/40 to-blue-900/40 backdrop-blur-xl border border-blue-500/20 rounded-2xl hover:border-blue-400/50 transition-all duration-300 group">
+            <div className="group text-center p-10 bg-gradient-to-br from-cyan-500/25 to-blue-600/25 backdrop-blur-xl border border-cyan-300/50 rounded-3xl hover:border-cyan-200/80 hover:shadow-2xl hover:shadow-cyan-500/40 transition-all duration-700 transform hover:scale-110">
               <div className="relative">
-                <Users className="h-12 w-12 text-blue-400 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-blue-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Users className="h-20 w-20 text-cyan-200 mx-auto mb-8 group-hover:animate-pulse" />
+                <div className="absolute inset-0 bg-cyan-300/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">1,247</div>
-              <div className="text-white/80 font-semibold">Active Clients</div>
+              <div className="text-5xl font-black bg-gradient-to-r from-cyan-200 to-blue-200 bg-clip-text text-transparent mb-3">1,247</div>
+              <div className="text-cyan-100 font-bold text-xl">Active Clients</div>
             </div>
             
-            <div className="text-center p-6 bg-gradient-to-br from-black/40 to-purple-900/40 backdrop-blur-xl border border-purple-500/20 rounded-2xl hover:border-purple-400/50 transition-all duration-300 group">
+            <div className="group text-center p-10 bg-gradient-to-br from-purple-500/25 to-violet-600/25 backdrop-blur-xl border border-purple-300/50 rounded-3xl hover:border-purple-200/80 hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-700 transform hover:scale-110">
               <div className="relative">
-                <Settings className="h-12 w-12 text-purple-400 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-purple-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Settings className="h-20 w-20 text-purple-200 mx-auto mb-8 group-hover:animate-pulse" />
+                <div className="absolute inset-0 bg-purple-300/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">24</div>
-              <div className="text-white/80 font-semibold">Active Vendors</div>
+              <div className="text-5xl font-black bg-gradient-to-r from-purple-200 to-violet-200 bg-clip-text text-transparent mb-3">24</div>
+              <div className="text-purple-100 font-bold text-xl">Active Vendors</div>
             </div>
             
-            <div className="text-center p-6 bg-gradient-to-br from-black/40 to-indigo-900/40 backdrop-blur-xl border border-indigo-500/20 rounded-2xl hover:border-indigo-400/50 transition-all duration-300 group">
+            <div className="group text-center p-10 bg-gradient-to-br from-blue-500/25 to-indigo-600/25 backdrop-blur-xl border border-blue-300/50 rounded-3xl hover:border-blue-200/80 hover:shadow-2xl hover:shadow-blue-500/40 transition-all duration-700 transform hover:scale-110">
               <div className="relative">
-                <BarChart3 className="h-12 w-12 text-indigo-400 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-indigo-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <BarChart3 className="h-20 w-20 text-blue-200 mx-auto mb-8 group-hover:animate-pulse" />
+                <div className="absolute inset-0 bg-blue-300/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">99.8%</div>
-              <div className="text-white/80 font-semibold">System Uptime</div>
+              <div className="text-5xl font-black bg-gradient-to-r from-blue-200 to-indigo-200 bg-clip-text text-transparent mb-3">99.8%</div>
+              <div className="text-blue-100 font-bold text-xl">System Uptime</div>
             </div>
           </div>
 
           {/* System Status Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div className="p-6 bg-gradient-to-br from-black/40 to-emerald-900/30 backdrop-blur-xl border border-emerald-500/20 rounded-2xl">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-white">System Health</h3>
-                <div className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            <div className="group p-8 bg-gradient-to-br from-emerald-500/30 to-teal-600/30 backdrop-blur-xl border border-emerald-300/60 rounded-3xl hover:border-emerald-200/80 hover:shadow-2xl hover:shadow-emerald-500/30 transition-all duration-500">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-emerald-100">System Health</h3>
+                <div className="w-4 h-4 bg-emerald-300 rounded-full animate-pulse shadow-lg shadow-emerald-300/50"></div>
               </div>
-              <div className="text-2xl font-bold text-emerald-400">Excellent</div>
-              <p className="text-white/60 text-sm">All systems operational</p>
+              <div className="text-4xl font-black text-emerald-200 mb-2">Excellent</div>
+              <p className="text-emerald-200/80 text-lg font-medium">All systems operational</p>
             </div>
             
-            <div className="p-6 bg-gradient-to-br from-black/40 to-blue-900/30 backdrop-blur-xl border border-blue-500/20 rounded-2xl">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-white">Message Queue</h3>
-                <Zap className="h-5 w-5 text-blue-400" />
+            <div className="group p-8 bg-gradient-to-br from-cyan-500/30 to-blue-600/30 backdrop-blur-xl border border-cyan-300/60 rounded-3xl hover:border-cyan-200/80 hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-cyan-100">Message Queue</h3>
+                <Zap className="h-7 w-7 text-cyan-300 animate-pulse" />
               </div>
-              <div className="text-2xl font-bold text-blue-400">Real-time</div>
-              <p className="text-white/60 text-sm">Processing 2.3K msg/sec</p>
+              <div className="text-4xl font-black text-cyan-200 mb-2">Real-time</div>
+              <p className="text-cyan-200/80 text-lg font-medium">Processing 2.3K msg/sec</p>
             </div>
             
-            <div className="p-6 bg-gradient-to-br from-black/40 to-purple-900/30 backdrop-blur-xl border border-purple-500/20 rounded-2xl">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-white">Revenue Today</h3>
-                <BarChart3 className="h-5 w-5 text-purple-400" />
+            <div className="group p-8 bg-gradient-to-br from-purple-500/30 to-violet-600/30 backdrop-blur-xl border border-purple-300/60 rounded-3xl hover:border-purple-200/80 hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-500">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-purple-100">Revenue Today</h3>
+                <BarChart3 className="h-7 w-7 text-purple-300 animate-pulse" />
               </div>
-              <div className="text-2xl font-bold text-purple-400">$47,892</div>
-              <p className="text-white/60 text-sm">+12.5% from yesterday</p>
+              <div className="text-4xl font-black text-purple-200 mb-2">$47,892</div>
+              <p className="text-purple-200/80 text-lg font-medium">+12.5% from yesterday</p>
             </div>
           </div>
         </div>
